@@ -1,8 +1,8 @@
-# CityRP Loading Screen — FiveM Resurso Instrukcija
+# Loading Screen — FiveM Resurso Instrukcija
 
 ## 📁 Struktūra
 ```
-cityRP_loadingscreen/
+mantelis_loadingscreen/
 ├── fxmanifest.lua          ← FiveM resurso manifestas
 ├── README.md               ← Ši instrukcija
 └── html/
