@@ -1,29 +1,133 @@
-# EN
-# What is this?
-A fully functional FiveM loading screen resource script created for a Lithuanian roleplay server. It features a professional dark design with animations and an integrated music player.
-# 🎨 Design
-Premium dark (charcoal/navy) style with neon-blue accent colors. An animated grid background, scanline effect, and glowing gradients create a cinematic atmosphere.
-# 🎵 Music player
-A YouTube music player with a volume slider — you can lower the volume or mute it directly in the loading screen. Includes an animated audio visualizer and play/pause controls.
-# 📋 Rules
-A list of 10 server rules is displayed on the right side with an animated “fade/slide in” appearance effect. Easily editable in config.js without any coding knowledge.
-# ⚙️ Technical
-Full FiveM integration with NUI messages — you can send player count, ping, control the music, or close the loading screen directly from client.lua. All settings are collected in a single config.js file.
+# CityRP Loading Screen — FiveM Resurso Instrukcija
 
+## 📁 Struktūra
+```
+cityRP_loadingscreen/
+├── fxmanifest.lua          ← FiveM resurso manifestas
+├── README.md               ← Ši instrukcija
+└── html/
+    ├── index.html          ← Pagrindinis HTML
+    ├── style.css           ← Stiliai
+    ├── config.js           ← ⭐ KONFIGURACIJA (keisk čia)
+    └── script.js           ← Logika (paprastai nekeičiama)
+```
 
-# LT
+---
 
-# 🤨 Kas tai?
-Pilnai veikiantis FiveM loading screen resurso skriptas, sukurtas lietuviškam roleplay serveriui. Profesionalus, tamsus dizainas su animacijomis ir integruotu muzikos grotuvų.
+## 🚀 Įdiegimas
 
-# 🎨 Dizainas 
-Premium tamsus (charcoal/melinas) stilius su neon mėlynomis akcentų spalvomis. Animuotas tinklelio fonas, scanline efektas ir švytintys gradientai sukuria kiną primenančią atmosferą.
+1. **Nukopijuok** aplanką `cityRP_loadingscreen` į savo serverio `resources/` katalogą.
+2. **server.cfg** faile pridėk:
+   ```
+   ensure cityRP_loadingscreen
+   ```
+3. **Perkrauk** serverį.
 
-# 🎵 Muzikos 
-grotuvas YouTube muzikos grotuvas su garsumo sliderių — galima sumažinti ar visai nutildyti tiesiai loading screen'e. Animuotas garso vizualizatorius ir play/pause valdymas.
+---
 
-# 📋 Taisyklės
-Dešinėje pusėje rodomas 10 serverio taisyklių sąrašas su animuotu atsiradimo efektu. Lengvai redaguojamos config.js faile be jokio kodo žinojimo.
+## ⚙️ Konfigūracija (`html/config.js`)
 
-# ⚙️ Techniškai 
-Pilna FiveM integracija su NUI pranešimais — galima siųsti player count, ping, valdyti muziką ar uždaryti loading screeną tiesiai iš client.lua. Visos nuostatos surinktos viename config.js faile.
+Atidaryk `html/config.js` ir pakeisk norimas reikšmes:
+
+### 🎵 Muzikos keitimas
+```js
+youtubeVideoId: '5qap5aO4i9A',   // Pakeisk į savo YouTube video ID
+trackName: "Mano Daina",
+trackArtist: "Atlikėjas",
+defaultVolume: 60,               // 0–100
+```
+
+Kaip rasti YouTube video ID:
+- Nuoroda: `https://www.youtube.com/watch?v=XXXXXXXXX`
+- ID yra: `XXXXXXXXX` (po `?v=`)
+
+### 📋 Taisyklių keitimas
+```js
+rules: [
+    { num: "01", title: "Tavo taisyklė", text: "Aprašymas..." },
+    // ...
+]
+```
+
+### 🎨 Spalvų keitimas
+```js
+colors: {
+    accent:  '#4fc3f7',   // Pagrindine neon spalva (mėlyna)
+    gold:    '#c9a84c',   // Antra akcentų spalva
+    // ...
+}
+```
+
+### 🌐 Serverio informacija
+```js
+serverName:    "CITY RP",
+discordLink:   "https://discord.gg/tavo-discord",
+maxPlayers:    500,
+```
+
+---
+
+## 📡 NUI Pranešimai (iš server.lua / client.lua)
+
+Loading screenas priima šiuos pranešimus:
+
+```lua
+-- client.lua pavyzdys:
+
+-- Siusti player count
+SendNUIMessage({ type = "playerCount", count = 247, max = 500 })
+
+-- Siusti ping
+SendNUIMessage({ type = "ping", ping = 24 })
+
+-- Valdyti muzika
+SendNUIMessage({ type = "setVolume", volume = 80 })
+SendNUIMessage({ type = "pauseMusic" })
+SendNUIMessage({ type = "resumeMusic" })
+
+-- Uzdaryti loading screen (jei naudoji loadscreen_manual_shutdown 'yes')
+AddEventHandler('playerSpawned', function()
+    SendNUIMessage({ type = "shutdown" })
+    ShutdownLoadingScreenNui()
+    ShutdownLoadingScreen()
+end)
+```
+
+---
+
+## 🔧 Rankinis uždarymas (`loadscreen_manual_shutdown`)
+
+`fxmanifest.lua` yra `loadscreen_manual_shutdown 'yes'` — tai reiškia loading screenas **NEUŽDARYTAS automatiškai**.
+
+Tau reikia `client.lua` failo, pvz.:
+
+```lua
+-- client.lua
+AddEventHandler('playerSpawned', function()
+    ShutdownLoadingScreenNui()
+    ShutdownLoadingScreen()
+end)
+```
+
+Arba jei neturi spawno sistemos, pašalink šią eilutę iš `fxmanifest.lua`:
+```
+loadscreen_manual_shutdown 'yes'
+```
+Tada FiveM pats uždary loading screeną kai žaidėjas prisijungs.
+
+---
+
+## ❓ Dažnos problemos
+
+| Problema | Sprendimas |
+|----------|-----------|
+| Loading screenas nerodomas | Patikrink ar `ensure cityRP_loadingscreen` yra server.cfg |
+| Muzika negroja | YouTube API reikia interneto — patikrink serverio ugniasienę |
+| Taisyklės neatsiranda | Patikrink `config.js` sintaksę (kableliai, kabučios) |
+| Loading screenas neužsidaro | Pridėk `client.lua` su `ShutdownLoadingScreen()` |
+
+---
+
+## 📞 Palaikymas
+
+Discord: **discord.gg/tavo-discord**
