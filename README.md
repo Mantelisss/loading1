@@ -2,13 +2,17 @@
 # 🤨 Kas tai?
 Pilnai veikiantis FiveM loading screen resurso skriptas, sukurtas lietuviškam roleplay serveriui. Profesionalus, tamsus dizainas su animacijomis ir integruotu muzikos grotuvų.
 
-# 🎨 Dizainas Premium tamsus (charcoal/melinas) stilius su neon mėlynomis akcentų spalvomis. Animuotas tinklelio fonas, scanline efektas ir švytintys gradientai sukuria kiną primenančią atmosferą.
+# 🎨 Dizainas 
+Premium tamsus (charcoal/melinas) stilius su neon mėlynomis akcentų spalvomis. Animuotas tinklelio fonas, scanline efektas ir švytintys gradientai sukuria kiną primenančią atmosferą.
 
-# 🎵 Muzikos grotuvas YouTube muzikos grotuvas su garsumo sliderių — galima sumažinti ar visai nutildyti tiesiai loading screen'e. Animuotas garso vizualizatorius ir play/pause valdymas.
+# 🎵 Muzikos 
+grotuvas YouTube muzikos grotuvas su garsumo sliderių — galima sumažinti ar visai nutildyti tiesiai loading screen'e. Animuotas garso vizualizatorius ir play/pause valdymas.
 
-# 📋 Taisyklės Dešinėje pusėje rodomas 10 serverio taisyklių sąrašas su animuotu atsiradimo efektu. Lengvai redaguojamos config.js faile be jokio kodo žinojimo.
+# 📋 Taisyklės
+Dešinėje pusėje rodomas 10 serverio taisyklių sąrašas su animuotu atsiradimo efektu. Lengvai redaguojamos config.js faile be jokio kodo žinojimo.
 
-# ⚙️ Techniškai Pilna FiveM integracija su NUI pranešimais — galima siųsti player count, ping, valdyti muziką ar uždaryti loading screeną tiesiai iš client.lua. Visos nuostatos surinktos viename config.js faile.
+# ⚙️ Techniškai 
+Pilna FiveM integracija su NUI pranešimais — galima siųsti player count, ping, valdyti muziką ar uždaryti loading screeną tiesiai iš client.lua. Visos nuostatos surinktos viename config.js faile.
 
 # EN 
 
